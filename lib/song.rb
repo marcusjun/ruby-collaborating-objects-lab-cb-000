@@ -34,17 +34,17 @@ class Song
   end
 
   def self.new_by_filename(filename)
-    if filename=="Michael Jackson - Black or White - pop.mp3"
+    #if filename=="Michael Jackson - Black or White - pop.mp3"
       #split_file=filename.split(" - ")
       #split_artist_name="Michael Jackson"
       #split_song_name="Black or White"
 
-      new_instance=Song.new("Black or White")
+      #new_instance=Song.new("Black or White")
       #new_song.name
 
-      new_instance.artist=Artist.new("Michael Jackson")
+      #new_instance.artist=Artist.new("Michael Jackson")
 
-      new_instance
+      #new_instance
 
       #new_instance.name="Black or White"
 
@@ -69,29 +69,35 @@ class Song
       #new_song.artist=Artist.new(split_song_name)
       #@artist=Artist.new(split_song_name)
 
-    else
+    #else
 
       #if filename is one string
       split_file=filename.split(" - ")
       split_artist_name=split_file[0]
       split_song_name=split_file[1]
 
-      #@name=split_song_name
-      new_song=Song.new(split_song_name)
-      #new_song.artist.name=split_artist_name
-      #new_song.name=split_song_name
+      new_instance=Song.new(split_song_name)
+      new_instance.artist=Artist.find_or_create_by_name(split_artist_name)#.new(split_artist_name)
+      new_instance.artist.add_song(split_song_name)
+      #new_instance.add_song(new_instance)
+      new_instance#.save
 
-      new_artist=Artist.new(split_artist_name)#.save
-      #new_artist.name=split_artist_name
-      #new_artist=Artist.find_or_create_by_name(split_artist_name)
+      ##@name=split_song_name
+      #new_song=Song.new(split_song_name)
+      ##new_song.artist.name=split_artist_name
+      ##new_song.name=split_song_name
+
+      #new_artist=Artist.new(split_artist_name)#.save
+      ##new_artist.name=split_artist_name
+      ##new_artist=Artist.find_or_create_by_name(split_artist_name)
 
 
-      #new_song.artist.name=split_artist_name
+      ##new_song.artist.name=split_artist_name
 
-      new_artist.add_song(new_song)
-      new_artist.save
+      #new_artist.add_song(new_song)
+      #new_artist.save
 
-    end
+    #end
 
     #binding.pry
 

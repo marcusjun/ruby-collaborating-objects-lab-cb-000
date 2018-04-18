@@ -11,16 +11,39 @@ class MP3Importer
     #loads all the mp3 files in the path directory
     #normalizes the filename to just the mp3 filename with no path
 
-    #basedir=@path
+    #Even though I changed the directory with the code below
+    #Dir.glob("*.mp3") couldn't find the directory.
+    #Error message: No such file or directory @ dir_chdir - ./spec/fixtures/mp3s
     #Dir.chdir(@path)
 
-    @files=Dir.entries(@path)
+    #To get this to work had to chdir to absolute path for
+    #this lab's directory then change directory again
+    #to relative path in @path "./spec/fixtures/mp3s"
 
-    #HORRIBLE WORKAROUND! but works
-    @files.delete_if {|entry| entry=="." || entry==".."}
+    Dir.chdir("/home/marcusjun/ruby-collaborating-objects-lab-cb-000")
+    Dir.chdir(@path)
 
+    #Or just use the absolute path from the start
+    #Dir.chdir("/home/marcusjun/ruby-collaborating-objects-lab-cb-000/spec/fixtures/mp3s")
+
+    @files = Dir.glob("*.mp3")
+
+
+    ###########################################
+    #Alternative option that retrieve all entries in the @path
+    #but then you have to cleanup the array of non-mp3 files
+    #@files=Dir.entries(@path)
+
+    #What the @files array looks like
     #@files= [".", "Action Bronson - Larry Csonka - indie.mp3", "Real Estate - Green Aisles - country.mp3",
     #"Thundercat - For Love I Come - dance.mp3", "Real Estate - It's Real - hip-hop.mp3", ".."]
+
+    #HORRIBLE WORKAROUND! but works
+    #@files.delete_if {|entry| entry=="." || entry==".."}
+
+
+    ###########################################
+    #Unnecessary and non-functional code below
 
     #@files.shift
     #@files.pop
@@ -62,14 +85,16 @@ class MP3Importer
     files
 
     #Because @files is an array
-    i=0
-    while (i<3)
-      Song.new_by_filename(@files[i])
-      i+=1
-    end
-    #@files.each do |file|
-      #Song.new_by_filename(file)
+    #i=0
+    #while (i<3)
+      #Song.new_by_filename(@files[i])
+      #i+=1
     #end
+
+
+    @files.each do |file|
+      Song.new_by_filename(file)
+    end
 
     #Song.new_by_filename(@files)
 
