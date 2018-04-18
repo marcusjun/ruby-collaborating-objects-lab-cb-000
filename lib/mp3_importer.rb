@@ -1,12 +1,11 @@
 class MP3Importer
-  attr_accessor :path, :files
+  attr_accessor :path
 
   def initialize(path)
     @path=path
     #Call files method within initialize method?
   end
 
-  #def self.files
   def files
     #loads all the mp3 files in the path directory
     #normalizes the filename to just the mp3 filename with no path
@@ -73,21 +72,22 @@ class MP3Importer
 
     #[["Real Estate - Green Aisles - country"], ["Real Estate - It's Real - hip-hop"], ["Action Bronson - Larry Csonka - indie"], ["Thundercat - For Love I Come - dance"]]
 
-    #Dir["/path/to/search/**/*.rb"]
-
   end
 
-  #def self.import
   def import
     #imports the files into the library by creating songs from a filename
 
     #Call files method to import filenames
     files
 
-    @files.each do |file|
-      Song.new_by_filename(file)
-    end
+    @files.each {|file| Song.new_by_filename(file)}
 
+    #Code below works too
+    #@files.each do |file|
+      #Song.new_by_filename(file)
+    #end
+
+    ################################################
     #Code below doesn't work
     #Song.new_by_filename(@files)
 
