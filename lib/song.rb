@@ -35,6 +35,9 @@ class Song
     #split_genre_name=split_file[2]
 
     #create new song with a title
+
+    Song.new(split_song_name).artist_name=(split_artist_name)
+
     new_song=Song.new(split_song_name)
     new_song.artist_name=(split_artist_name)
     new_song
