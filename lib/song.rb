@@ -1,5 +1,3 @@
-require 'pry'
-
 class Song
 
   attr_accessor :name, :artist
@@ -8,22 +6,16 @@ class Song
     @name=name
   end
 
-  #def name=(name)
-    #@name=name
-  #end
+  #the artist_name= method is described in the
+  #lab's instructions but not in song_spec.rb
+  #It might exist to do some of the work in
+  #self.new_by_filename but I couldn't get it to work
+  #So this method basically is never called or used
+  def artist_name=(artist_name)
+    @artist=Artist.find_or_create_by_name(artist_name)
 
-  #def name
-    #self.name
-    #self.artist.name
-    #@name
-  #end
-
-  #def artist=(artist)
-    #@artist=artist
-  #end
-
-  def artist_name=(name)
-    @artist=Artist.find_or_create_by_name(name)
+    ####################################
+    #Code that didn't work
     #Artist.add_song(song)
 
     #if (self.artist.nil?)
@@ -34,68 +26,34 @@ class Song
   end
 
   def self.new_by_filename(filename)
-    #if filename=="Michael Jackson - Black or White - pop.mp3"
-      #split_file=filename.split(" - ")
-      #split_artist_name="Michael Jackson"
-      #split_song_name="Black or White"
+    #if filename is one string
+    split_file=filename.split(" - ")
+    split_artist_name=split_file[0]
+    split_song_name=split_file[1]
+    #split_genre_name=split_file[2]
 
-      #new_instance=Song.new("Black or White")
-      #new_song.name
+    new_song=Song.new(split_song_name)
+    new_song.artist=Artist.find_or_create_by_name(split_artist_name)#.new(split_artist_name)
+    new_song.artist.add_song(split_song_name)
+    new_song
 
-      #new_instance.artist=Artist.new("Michael Jackson")
+    ##########################################
+    #Code that didn't work
 
-      #new_instance
+    ##@name=split_song_name
+    #new_song=Song.new(split_song_name)
+    ##new_song.artist.name=split_artist_name
+    ##new_song.name=split_song_name
 
-      #new_instance.name="Black or White"
-
-      #new_song.name="Black or White"
-      #new_song
-      #new_artist.print_songs
-      #new_artist.add_song(new_song)
-      #new_artist.save
-
-      #new_song.class.name
-      #self.class.name
-
-      #"Black or White"
-      #self.name
-      #self.name="Black or White"
-      #@name
+    #new_artist=Artist.new(split_artist_name)#.save
+    ##new_artist.name=split_artist_name
+    ##new_artist=Artist.find_or_create_by_name(split_artist_name)
 
 
-      #new_song.name=split_song_name
-      #@name=split_song_name
-      #new_artist=Artist.new(split_song_name)
-      #new_song.artist=Artist.new(split_song_name)
-      #@artist=Artist.new(split_song_name)
+    ##new_song.artist.name=split_artist_name
 
-    #else
-
-      #if filename is one string
-      split_file=filename.split(" - ")
-      split_artist_name=split_file[0]
-      split_song_name=split_file[1]
-
-      new_instance=Song.new(split_song_name)
-      new_instance.artist=Artist.find_or_create_by_name(split_artist_name)#.new(split_artist_name)
-      new_instance.artist.add_song(split_song_name)
-      #new_instance.add_song(new_instance)
-      new_instance#.save
-
-      ##@name=split_song_name
-      #new_song=Song.new(split_song_name)
-      ##new_song.artist.name=split_artist_name
-      ##new_song.name=split_song_name
-
-      #new_artist=Artist.new(split_artist_name)#.save
-      ##new_artist.name=split_artist_name
-      ##new_artist=Artist.find_or_create_by_name(split_artist_name)
-
-
-      ##new_song.artist.name=split_artist_name
-
-      #new_artist.add_song(new_song)
-      #new_artist.save
+    #new_artist.add_song(new_song)
+    #new_artist.save
 
     #end
 

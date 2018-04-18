@@ -81,21 +81,14 @@ class MP3Importer
   def import
     #imports the files into the library by creating songs from a filename
 
-    #Call files method first? or self.files ?
+    #Call files method to import filenames
     files
-
-    #Because @files is an array
-    #i=0
-    #while (i<3)
-      #Song.new_by_filename(@files[i])
-      #i+=1
-    #end
-
 
     @files.each do |file|
       Song.new_by_filename(file)
     end
 
+    #Code below doesn't work
     #Song.new_by_filename(@files)
 
     #if @files were only a single string
