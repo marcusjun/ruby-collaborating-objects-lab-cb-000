@@ -27,7 +27,7 @@ class Artist
   end
 
   def self.find_by_name(name)
-    self.all.detect {|music| music.name==name}
+    self.all.detect {|performer| performer.name==name}
   end
 
   def self.create_by_name(name)
@@ -61,7 +61,7 @@ class Artist
 
     #Code below works too, just a bit longer
     #@songs.each do |song|
-      #puts song.name
+      #puts song.nameperformer
     #end
   end
 
