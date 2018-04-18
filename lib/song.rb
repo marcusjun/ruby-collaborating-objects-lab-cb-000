@@ -36,11 +36,9 @@ class Song
 
     #create new song with a title
 
-    Song.new(split_song_name).artist_name=(split_artist_name)
-
-    #new_song=Song.new(split_song_name)
-    #new_song.artist_name=(split_artist_name)
-    #new_song
+    new_song=Song.new(split_song_name)
+    new_song.artist_name=(split_artist_name)
+    new_song
 
     #The artist_name= method does the work
     #of the following two lines of code
