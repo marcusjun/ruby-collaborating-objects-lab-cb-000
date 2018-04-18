@@ -44,8 +44,6 @@ class Song
     #new_song.artist=Artist.find_or_create_by_name(split_artist_name)
     #new_song.artist.add_song(split_song_name)
 
-    
-
     ##########################################
     #Code that didn't work
 
